@@ -1,17 +1,17 @@
 import React from 'react';
 import '../styles/Login.scss';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as countActions from '../actions/changeCount';
 import API from '../api/api';
-import { withRouter } from 'react-router-dom';
 
 export class Users extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-
+      users: []
     }
   }
 
@@ -23,7 +23,10 @@ export class Users extends React.Component {
       }
      }).then(
       (res) => {
-        console.log(res);
+        console.log(res)
+        this.setState({
+          users: res.data
+        })
       }
     ).catch((err) => {
       console.log(err);
@@ -32,6 +35,7 @@ export class Users extends React.Component {
   
   render() {
     console.log('dsfkdkf');
+    console.log(this.props);
     return(
       <div>
         <div style={{color:'white'}}>sdfsvvbbvbdf</div>
@@ -55,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ActionCreators, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Users))
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

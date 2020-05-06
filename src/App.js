@@ -3,8 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  withRouter
+  Route
 } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -21,13 +20,12 @@ export class App extends React.Component {
     if(isAuthenticated) {
       token = localStorage.getItem('bearer');
     }
-    console.log('here',token);
     return (
       <Switch> 
         <Router>
           <Route exact path="/users" component={withAuthentication( Users, { isAuthenticated: token })} />
-          <Route exact path="/login" component={withAuthentication( Login, { isAuthenticated: token })} />
-          <Route exact path="/" component={withAuthentication( Login, { isAuthenticated: token })} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
         </Router>
       </Switch>
     );
@@ -46,6 +44,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ActionCreators, dispatch),
 });
 
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default connect(mapStateToProps, mapDispatchToProps)(App)

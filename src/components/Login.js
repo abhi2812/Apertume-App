@@ -28,8 +28,6 @@ export class Login extends React.Component {
     })
   }
 
-  
-
   authenticate = () => {
     const { userName, password } = this.state;
     const { actions } = this.props;
@@ -56,12 +54,12 @@ export class Login extends React.Component {
   }
 
   render() {
-    console.log('props are ==>> ',this.props)
+    const token = localStorage.getItem('bearer');
     const { userName, password } = this.state;
-    const { isAuthenticated } = this.props;
+    console.log('fuecker',token);
     return (
       <div>
-        {isAuthenticated 
+        {token
         ? <Redirect to="/users" />
         : <div className="Login">
           <input type="text" name="userName" autoFocus="autofocus" placeholder="username" onChange={(e) => this.setValue(e)} value={userName} />
