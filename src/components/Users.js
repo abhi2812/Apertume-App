@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/CardComponent.scss';
-
+import '../styles/CardComponent.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as countActions from '../actions/changeCount';
@@ -31,15 +30,13 @@ export class Users extends React.Component {
       }
      }).then(
       (res) => {
-        const user1 = {firstName: 'ad', lastName: 'ac', age: 24, accountId: 'asd'};
         this.setState({
-          users: [...res.data, user1],
+          users: res.data,
           loading: false
         })
       }
     ).catch((err) => {
       this.logout();
-      console.log(err);
     })
   }
 
@@ -59,7 +56,6 @@ export class Users extends React.Component {
   }
 
   filterUsers = (users) => {
-    console.log(users);
     const { startAge, endAge, nameLength } = this.state;
     return users.filter((x => {
       let len = 0, age = -1;
@@ -82,29 +78,29 @@ export class Users extends React.Component {
         { this.state.loggedOut 
           ? <Redirect to="/login" />
           : loading 
-          ? <div class="loader"></div>
+          ? <div className="loader"></div>
           : <div className="users-outer">
               <div className="logout-bar">
-                <button onClick={this.logout}>logout!</button>  
+                <button onClick={this.logout}>Logout</button>  
               </div>
-              <div className="info"><h1>Users</h1></div>
-              <div className="info"><h1>Filter conditions</h1></div>
+              <div className="info"><h1 className="info-inner">Users</h1></div>
+              <div className="info-filter"><h3>Filter conditions</h3></div>
               <div className="filterMenu">
                 <div>
-                  <label htmlFor ="startAge">Enter start age</label>
+                  <label htmlFor ="startAge">Filter by age<b>(at least)</b></label>
                   <input type="number" placeholder="start age" name="startAge" onChange={(e)=>this.setText(e)} value={this.state.startAge}></input>
                 </div>
                 <div>
-                  <label htmlFor ="endAge">Enter end age</label>
+                  <label htmlFor ="endAge">Filter by age<b>(at most)</b></label>
                   <input type="number" placeholder="end age" name="endAge" onChange={(e)=>this.setText(e)} value={this.state.endAge}></input>
                 </div>
                 <div>
-                  <label htmlFor ="nameLength">Enter max length</label>
+                  <label htmlFor ="nameLength">Filter by max name length</label>
                   <input type="number" placeholder="max length" name="nameLength" onChange={(e)=>this.setText(e)} value={this.state.nameLength}></input>
                 </div>
               </div>
               <div className="users">
-                {this.filterUsers(users).map((user) => <CardComponent user={user}/>)}
+                {this.filterUsers(users).map((user, index) => <CardComponent key = {index} user={user}/>)}
               </div>
             </div>
         }

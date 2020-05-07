@@ -35,6 +35,15 @@ input {
   background-color: rgba(0,0,255,0.3);
 }
 
+.info-inner {
+  margin-left: 4%;
+}
+
+.info-filter {
+  text-align: center;
+  background-color: rgba(0,0,255,0.1);
+}
+
 .CardComponent {
   padding: 5%;
   color: white;

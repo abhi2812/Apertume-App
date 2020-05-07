@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/Login.scss';
-
+import '../styles/Login.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as countActions from '../actions/changeCount';
@@ -33,14 +32,36 @@ export class Login extends React.Component {
     })
   }
 
+  handleSubmit = (e) => {
+    if (e.keyCode === 13) {
+      this.authenticate();
+    }
+  }
+
   authenticate = () => {
     const { userName, password } = this.state;
+    if(!userName) {
+      this.setState({
+        authenticateFail: true,
+        errorMessage: 'username cannot be blank'
+      })
+      return
+    }
+    if(!password) {
+      this.setState({
+        authenticateFail: true,
+        errorMessage: 'password cannot be blank'
+      })
+      return
+    }
     const { actions } = this.props;
     this.setState({ authenticating: true },
       () => API.post(`user/login`, { accountId: userName, pswd: password })
       .then(res => {
         if(res.status === 200 && res.data && res.data.token) {
-          console.log(res);
+          this.setState({
+            authenticateFail: false
+          })
           actions.setAuthentication({isAuthenticated: true, token: res.data.token });
           localStorage.setItem('bearer', res.data.token);
         } else {
@@ -48,7 +69,7 @@ export class Login extends React.Component {
             authenticateFail: true,
             authenticating: false,
             failCount: this.state.failCount+1,
-            errorMessage: res.error_message ? res.error_message : this.state.errorMessage
+            errorMessage: res.error_message ? res.error_message : 'incorrect credentials, please try again'
           })
         }
       }).catch(err => {
@@ -56,23 +77,14 @@ export class Login extends React.Component {
           authenticateFail: true,
           authenticating: false,
           failCount: this.state.failCount+1,
-          errorMessage: err.error_message ? err.error_message : this.state.errorMessage
+          errorMessage: err.error_message ? err.error_message : 'incorrect credentials, please try again'
         })
       })
     )
   }
 
-  inputPassword = (e) => {
-    let str = '';
-    if(e.target.value) {
-      str = str.padEnd(e.target.value.length, '*');
-    }
-    console.log('str==',str,'dff', e.target.value)
-    this.setState({
-      password: e.target.value,
-      maskedPassword: str
-    })
-  }
+  
+
 
   render() {
     const { token } = this.props;
@@ -88,11 +100,13 @@ export class Login extends React.Component {
               {authenticateFail && <div className="login-error">{this.state.errorMessage}</div>}
               <div className="login-input">
                 <label htmlFor ="username">Username:</label>
-                <input type="text" name="userName" placeholder="username" onChange={(e) => this.setValue(e)} value={userName} /><br />
+                <input type="text" name="userName" placeholder="username"
+                  onKeyDown={(e) => this.handleSubmit(e)} onChange={(e) => this.setValue(e)} value={userName} /><br />
               </div>
               <div className="login-input">
                 <label htmlFor ="password">Password:</label>
-                <input type="password" name="password" placeholder="password" onChange={(e) => this.setValue(e)} value={password} />
+                <input type="password" name="password" placeholder="password" 
+                  onKeyDown={(e) => this.handleSubmit(e)} onChange={(e) => this.setValue(e)} value={password} />
               </div>
               <button onClick={this.authenticate}>Login!</button>
             </div>
@@ -103,7 +117,6 @@ export class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  count: state.count.count,
   isAuthenticated: state.count.isAuthenticated,
   token: state.count.token
 });
