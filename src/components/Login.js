@@ -86,12 +86,12 @@ export class Login extends React.Component {
         : <div className="login">
             <div className="login-inner">
               {authenticateFail && <div className="login-error">{this.state.errorMessage}</div>}
-              <div>
-                <label for="username">Username:</label>
-                <input type="text" name="userName" autoFocus="autofocus" placeholder="username" onChange={(e) => this.setValue(e)} value={userName} /><br />
+              <div className="login-input">
+                <label htmlFor ="username">Username:</label>
+                <input type="text" name="userName" placeholder="username" onChange={(e) => this.setValue(e)} value={userName} /><br />
               </div>
-              <div>
-                <label for="password">Password:</label>
+              <div className="login-input">
+                <label htmlFor ="password">Password:</label>
                 <input type="password" name="password" placeholder="password" onChange={(e) => this.setValue(e)} value={password} />
               </div>
               <button onClick={this.authenticate}>Login!</button>

@@ -31,8 +31,9 @@ export class Users extends React.Component {
       }
      }).then(
       (res) => {
+        const user1 = {firstName: 'ad', lastName: 'ac', age: 24, accountId: 'asd'};
         this.setState({
-          users: res.data,
+          users: [...res.data, user1],
           loading: false
         })
       }
@@ -58,6 +59,7 @@ export class Users extends React.Component {
   }
 
   filterUsers = (users) => {
+    console.log(users);
     const { startAge, endAge, nameLength } = this.state;
     return users.filter((x => {
       let len = 0, age = -1;
@@ -81,14 +83,25 @@ export class Users extends React.Component {
           ? <Redirect to="/login" />
           : loading 
           ? <div class="loader"></div>
-          : <div>
-              <div>
+          : <div className="users-outer">
+              <div className="logout-bar">
                 <button onClick={this.logout}>logout!</button>  
               </div>
+              <div className="info"><h1>Users</h1></div>
+              <div className="info"><h1>Filter conditions</h1></div>
               <div className="filterMenu">
-                <input type="number" placeholder="start age" name="startAge" onChange={(e)=>this.setText(e)} value={this.state.startAge}></input>
-                <input type="number" placeholder="end age" name="endAge" onChange={(e)=>this.setText(e)} value={this.state.endAge}></input>
-                <input type="number" placeholder="end age" name="nameLength" onChange={(e)=>this.setText(e)} value={this.state.nameLength}></input>
+                <div>
+                  <label htmlFor ="startAge">Enter start age</label>
+                  <input type="number" placeholder="start age" name="startAge" onChange={(e)=>this.setText(e)} value={this.state.startAge}></input>
+                </div>
+                <div>
+                  <label htmlFor ="endAge">Enter end age</label>
+                  <input type="number" placeholder="end age" name="endAge" onChange={(e)=>this.setText(e)} value={this.state.endAge}></input>
+                </div>
+                <div>
+                  <label htmlFor ="nameLength">Enter max length</label>
+                  <input type="number" placeholder="max length" name="nameLength" onChange={(e)=>this.setText(e)} value={this.state.nameLength}></input>
+                </div>
               </div>
               <div className="users">
                 {this.filterUsers(users).map((user) => <CardComponent user={user}/>)}

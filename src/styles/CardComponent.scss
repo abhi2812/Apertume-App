@@ -12,12 +12,35 @@
   justify-content: space-evenly;
 }
 
+.users-outer {
+  align-items: center;
+}
+
+.logout-bar>button {
+  float: right;
+  vertical-align: middle;
+  margin-right: 0.5%;
+  margin-top: 0.5%;
+}
+
+input {
+  border: 1px solid black;
+  font-size: 20px;
+  border-radius: 20px;
+  margin-left: 1%;
+}
+
+.info {
+  text-align: center;
+  background-color: rgba(0,0,255,0.3);
+}
+
 .CardComponent {
   padding: 5%;
   color: white;
   border: 1px solid red;
   border-radius: 1em;
-  background-color: green;
+  background-color: rgba(0, 255, 136, 0.1);
   width: 150px;
   margin: 3%;
 }

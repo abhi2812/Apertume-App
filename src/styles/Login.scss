@@ -1,5 +1,6 @@
 body {
-  background-color: black;
+  background-image: url('../images/background.jpg');
+  background-attachment: fixed;
   font-size: 16;
   height: 100%;
 }
@@ -13,8 +14,8 @@ body {
 .login {
   display: flex;
   border: 1px none;
-  background-color: red;
-  border-radius: 10%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 2%;
   height: 50%;
   width: 40%;
   color: white;
@@ -26,21 +27,46 @@ body {
   margin: 0 auto;
 }
 
-.login-inner div { 
+
+
+input {
+  padding: 4%;
+}
+
+.login-input {
   display: flex;
-  flex-direction: row;
-  margin: 10%;
-  margin-left: 0%;
+  margin: 4%;
+  margin-left: 0;
+  margin-top: 8%;
 }
 
-.login-inner input {
-  margin-left: 5%; 
+
+label {
+  display: block;
+  padding: 4%;
+  min-width: 80px;
 }
 
-.login-inner button {
+.login-input > label {
+  font-size: 20px
+}
+
+.login-input > input {
+  border: 1px solid black;
+  font-size: 20px;
+  border-radius: 20px;
+  margin-left: 1%;
+}
+
+.login-inner > button {
   align-self: center;
   margin-top: 5%;
   margin-bottom: 10%;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 4%;
+  font-size: 20px;
+  min-width: 40%;
 }
 
 .login-error {
@@ -61,4 +87,40 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width : 480px) {
+  .login {
+    width: 90%;
+  }
+
+  .login-input {
+    flex-wrap: wrap;
+  }
+
+  .login-input > input {
+    width: 80%;
+  }
+
+  .login-inner {
+    padding-left: 4%;
+  }
+}
+
+
+@media only screen and (max-width : 768px) {
+  .login {
+    width: 80%;
+  }
+
+  .login-input {
+    flex-wrap: wrap;
+  }
+
+}
+
+@media only screen and (max-width : 1200px) {
+  .login {
+    width: 70%;
+  }
 }
