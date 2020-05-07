@@ -15,11 +15,7 @@ import Users from './components/Users';
 
 export class App extends React.Component {
   render() {
-    const { isAuthenticated } = this.props;
-    let token = null;
-    if(isAuthenticated) {
-      token = localStorage.getItem('bearer');
-    }
+    const { token } = this.props;
     return (
       <Switch> 
         <Router>
@@ -33,7 +29,8 @@ export class App extends React.Component {
 }
 const mapStateToProps = state => ({
   count: state.count.count,
-  isAuthenticated: state.count.isAuthenticated
+  isAuthenticated: state.count.isAuthenticated,
+  token: state.count.token
 });
 
 const ActionCreators = Object.assign(

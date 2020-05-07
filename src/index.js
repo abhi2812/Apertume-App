@@ -9,6 +9,9 @@ import configureStore from './store/configureStore';
 const store = configureStore();
 
 const rootElement = document.getElementById('root')
+rootElement.style.height = '100%'
+rootElement.style.backgroundColor = 'black' 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

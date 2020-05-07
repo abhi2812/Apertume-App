@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Users } from '../components/Users';
-import { Login } from '../components/Login';
-import { withRouter, Redirect } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import * as countActions from '../actions/changeCount';
+import { Redirect } from 'react-router-dom';
+
 
 export function withAuthentication(Component, props) {
-  return class checkAuth extends React.Component {
+  class checkAuth extends React.Component {
     render() {
-      const token = localStorage.getItem('bearer');
-      //console.log(props.isAuthenticated)
+      const { token } = this.props;
       return(
         token ? <Component /> : <Redirect to="/" />
       )
     }
   }
+
+  const mapStateToProps = (state) => ({
+    token: state.count.token
+  })
+
+  return connect(mapStateToProps)(checkAuth);
 }
