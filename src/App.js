@@ -28,9 +28,8 @@ export class App extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  count: state.count.count,
-  isAuthenticated: state.count.isAuthenticated,
-  token: state.count.token
+  isAuthenticated: state.login.isAuthenticated,
+  token: state.login.token
 });
 
 const ActionCreators = Object.assign(

@@ -5,7 +5,7 @@ const initialState = {
   token: ''
 };
 
-const countReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_AUTHENTICATION:
       return {
@@ -23,4 +23,4 @@ const countReducer = (state = initialState, action) => {
       return state;
   }
 }
-export default countReducer;
+export default loginReducer;

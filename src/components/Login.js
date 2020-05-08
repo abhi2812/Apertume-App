@@ -117,8 +117,8 @@ export class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.count.isAuthenticated,
-  token: state.count.token
+  isAuthenticated: state.login.isAuthenticated,
+  token: state.login.token
 });
 
 const ActionCreators = Object.assign(

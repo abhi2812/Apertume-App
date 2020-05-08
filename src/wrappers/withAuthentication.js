@@ -14,7 +14,7 @@ export function withAuthentication(Component, props) {
   }
 
   const mapStateToProps = (state) => ({
-    token: state.count.token
+    token: state.login.token
   })
 
   return connect(mapStateToProps)(checkAuth);

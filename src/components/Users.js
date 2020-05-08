@@ -110,9 +110,8 @@ export class Users extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  count: state.count.count,
-  token: state.count.token,
-  users: state.count.users
+  token: state.login.token,
+  users: state.login.users
 });
 
 const ActionCreators = Object.assign(
