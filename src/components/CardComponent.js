@@ -3,7 +3,7 @@ import '../styles/CardComponent.css';
 
 export default function CardComponent(props) {
   return(
-    <div className="CardComponent">
+    <div className="card-component">
       <div>AccountId: {props.user.accountId}</div>
       <div>Age: {props.user.age}</div>
       <div>FirstName: {props.user.firstName}</div>

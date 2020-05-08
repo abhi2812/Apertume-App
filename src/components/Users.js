@@ -72,7 +72,7 @@ export class Users extends React.Component {
   }
   
   render() {
-    const { users, loading } = this.state;
+    const { users, loading, startAge, endAge, nameLength } = this.state;
     return(
       <div>
         { this.state.loggedOut 
@@ -85,18 +85,18 @@ export class Users extends React.Component {
               </div>
               <div className="info"><h1 className="info-inner">Users</h1></div>
               <div className="info-filter"><h3>Filter conditions</h3></div>
-              <div className="filterMenu">
+              <div className="filter-menu">
                 <div>
                   <label htmlFor ="startAge">Filter by age<b>(at least)</b></label>
-                  <input type="number" placeholder="start age" name="startAge" onChange={(e)=>this.setText(e)} value={this.state.startAge}></input>
+                  <input type="number" placeholder="start age" name="startAge" onChange={(e)=>this.setText(e)} value={startAge}></input>
                 </div>
                 <div>
                   <label htmlFor ="endAge">Filter by age<b>(at most)</b></label>
-                  <input type="number" placeholder="end age" name="endAge" onChange={(e)=>this.setText(e)} value={this.state.endAge}></input>
+                  <input type="number" placeholder="end age" name="endAge" onChange={(e)=>this.setText(e)} value={endAge}></input>
                 </div>
                 <div>
                   <label htmlFor ="nameLength">Filter by max name length</label>
-                  <input type="number" placeholder="max length" name="nameLength" onChange={(e)=>this.setText(e)} value={this.state.nameLength}></input>
+                  <input type="number" placeholder="max length" name="nameLength" onChange={(e)=>this.setText(e)} value={nameLength}></input>
                 </div>
               </div>
               <div className="users">

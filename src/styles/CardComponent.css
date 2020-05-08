@@ -5,7 +5,7 @@
   justify-content: space-evenly;
 }
 
-.filterMenu {
+.filter-menu {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@ input {
   background-color: rgba(0,0,255,0.1);
 }
 
-.CardComponent {
+.card-component {
   padding: 5%;
   color: white;
   border: 1px solid red;
@@ -54,7 +54,7 @@ input {
   margin: 3%;
 }
 
-.CardComponent div {
+.card-component div {
   clear: both;
   margin: 5%;
 }
